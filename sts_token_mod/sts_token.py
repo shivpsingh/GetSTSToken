@@ -38,20 +38,36 @@ class STS_Connect:
 
         return AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_SESSION_TOKEN
 
-    def is_token_still_valid(self):
+    @classmethod
+    def is_token_still_valid(cls) -> bool:
         current_time = datetime.now(tz.UTC)
         last_exp_time = current_time
-        with open(df.AWS_CRED_RESPONSE_FILE_NAME, 'rb') as fh:
-            try:
-                last_exp_time = pk.load(fh)
-            except EOFError as err:
-                last_exp_time = current_time
-        if last_exp_time > current_time:
-            return True
+        try:
+            with open(df.AWS_CRED_RESPONSE_FILE_NAME, 'rb') as fh:
+                try:
+                    last_exp_time = pk.load(fh)
+                except EOFError as err:
+                    last_exp_time = current_time
+            if last_exp_time > current_time:
+                return True
+        except FileNotFoundError as ferr:
+            return False
         return False
 
     @classmethod
-    def valid_token(cls, token_code):
+    def valid_token(cls, token_code) -> bool:
         VALID_PATTERN = "^[0-9]{6}$"
         pattern = re.compile(VALID_PATTERN)
         return True if pattern.match(token_code) else False
+
+    @classmethod
+    def sts_success_msg(cls):
+        df.success_message()
+
+    def create_sts_scripts(self, token_code):
+        return df.write_to_files(*self.sts_connect(token_code))
+
+    @classmethod
+    def sts_default_profile(cls):
+        return df.PROFILE
+    

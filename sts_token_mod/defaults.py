@@ -30,10 +30,12 @@ def success_message():
 
 def write_to_files(AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_SESSION_TOKEN):
     try:
+        # For Bash terminal
         with open(AWS_CRED_BASH_FILE_NAME, 'w') as fh:
             fh.write(f'export AWS_ACCESS_KEY_ID="{AWS_ACCESS_KEY_ID}"\n')
             fh.write(f'export AWS_SECRET_ACCESS_KEY="{AWS_SECRET_ACCESS_KEY}"\n')
             fh.write(f'export AWS_SESSION_TOKEN="{AWS_SESSION_TOKEN}"')
+        # For CMD
         with open(AWS_CRED_WIN_FILE_NAME, 'w') as fh:
             fh.write(f'@echo off\n')
             fh.write(f'set AWS_ACCESS_KEY_ID={AWS_ACCESS_KEY_ID}\n')
