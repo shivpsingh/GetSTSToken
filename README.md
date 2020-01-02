@@ -66,7 +66,7 @@ For Reset Existing token For Custom Profile
 
 To Set credentials in CMD / Powershell Run:
 ```
-set-token.bat
+    set-token.bat
 ```
 
 #### If want to use custom locations for the files, please update sts_token_mod/locations.py
