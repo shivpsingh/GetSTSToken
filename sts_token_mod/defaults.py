@@ -2,7 +2,7 @@ from os import path, environ
 import json
 
 # Defaults locations
-from locations import AWS_CRED_ARN_FILE_NAME, AWS_CRED_RESPONSE_FILE_NAME, AWS_CRED_BASH_FILE_NAME, AWS_CRED_WIN_FILE_NAME
+from sts_token_mod.locations import AWS_CRED_ARN_FILE_NAME, AWS_CRED_RESPONSE_FILE_NAME, AWS_CRED_BASH_FILE_NAME, AWS_CRED_WIN_FILE_NAME
 
 
 PROFILE = 'default'

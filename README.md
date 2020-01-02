@@ -3,7 +3,7 @@
 Requirements:
 
 ```
-    1. Python3.6 or >
+    1. Python3.6 or latest
     2. aws credentials should be configured - using aws configure
     3. python boto3 package - pip install boto3
 ```
